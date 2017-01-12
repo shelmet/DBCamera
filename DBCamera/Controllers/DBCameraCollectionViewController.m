@@ -89,7 +89,7 @@
 
 - (void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    [_collectionControllerDelegate collectionView:collectionView itemURL:(NSURL *)[[asset defaultRepresentation] url]];
+    [_collectionControllerDelegate collectionView:collectionView itemURL:(NSURL *)[_items[indexPath.item]];
 }
 
 @end
