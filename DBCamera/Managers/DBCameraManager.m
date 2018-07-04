@@ -92,11 +92,13 @@
     [_stillImageOutput setOutputSettings:@{ AVVideoCodecKey : AVVideoCodecJPEG }];
     
     _captureSession = [[AVCaptureSession alloc] init];
-    if ( [_captureSession canAddInput:_videoInput] )
+    if ( ([_captureSession canAddInput:_videoInput]) &&
+        ([_captureSession canAddOutput:_stillImageOutput]) ) {
         [_captureSession addInput:_videoInput];
-
-    if ( [_captureSession canAddOutput:_stillImageOutput] )
         [_captureSession addOutput:_stillImageOutput];
+    } else {
+        _captureSession = nil;
+    }
     
     [_captureSession setSessionPreset:sessionPreset];
     
